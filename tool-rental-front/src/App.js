@@ -2,12 +2,25 @@ import React from 'react';
 import './App.css';
 
 export const ToolAvailable = ({ toolId, toolName }) => {
+
+  const handleClick = async () =>{
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        user:{idUser:1},
+        tool:{idTool:toolId}
+      })
+    };
+    await fetch('http://127.0.0.1:8080/rental', requestOptions);
+  }
+
   return (
     <li className="toolAvilable list-group-item">
       <div className='row'>
         <div className='col-10'><h5>{toolName}</h5></div>
         <div className='col-1'>
-          <a className="btn btn-primary btn-sm" href="Jumbo action link" role="button">+</a></div>
+          <a className="btn btn-primary btn-sm" href="Jumbo action link" role="button" onClick={handleClick}>+</a></div>
       </div>
     </li>
   );
@@ -21,7 +34,9 @@ export const SideBar = () => {
   // Obtiene las tools del api
   const obtenerTools = async () => {
     const data = await fetch('http://127.0.0.1:8080/availableTools');
-    setTools(await data.json());
+    if(data){
+      setTools(await data.json());
+    }
   }
 
   //actualiza las tools
@@ -31,7 +46,7 @@ export const SideBar = () => {
 
   //crea la lista de tools a nivel de List items html
   const toolsList = tools.map(tool =>
-    <ToolAvailable toolID={tool.idTool} toolName={tool.toolName} />
+    <ToolAvailable key={tool.idTool} toolId={tool.idTool} toolName={tool.toolName} />
   )
 
   //retorna el componente side bar
@@ -52,7 +67,7 @@ export const UserInfo = ({ userId, userName, urlImageUser }) => {
     <div id='userInfo' className='row'>
       <div className='col-2'>
         <div className="media">
-          <a className=" align-self-center" href="#">
+          <a className=" align-self-center" href="http://localhost:3000/">
             <img height='100vh' src={urlImageUser} alt="" />
           </a>
         </div>
@@ -95,17 +110,19 @@ export const RentedTools = ({userId}) => {
   // Obtiene las tools del api
   const obtenerRentedTools = async () => {
     const data = await fetch(`http://127.0.0.1:8080/rentalsById?idUser=${userId}`);
-    setRentedTools(await data.json());
+    if(data){
+      setRentedTools(await data.json());
+    }
   }
 
   //actualiza las tools
   React.useEffect(() => {
     obtenerRentedTools();
-  }, [])
+  })
 
   //crea la lista de tools a nivel de List items html
   const rentedToolsList = rentedTools.map(rental =>
-    <RentedTool toolId={rental.tool.idTool} toolName={rental.tool.toolName} deliveryDate='13 dias' />
+    <RentedTool key={rental.tool.idTool} toolId={rental.tool.idTool} toolName={rental.tool.toolName} deliveryDate='13 dias' />
   )
 
   return (

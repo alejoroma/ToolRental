@@ -1,5 +1,6 @@
 package com.toolrental.toolRentalAPI.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -9,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="users")
+@Table(name="rentals")
 public class Rental {
 	
 	/**
@@ -19,10 +20,10 @@ public class Rental {
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "sequence_rentals")
 	private Long idUser;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
 	private User user;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
 	private Tool tool;
 
 	public User getUser() {

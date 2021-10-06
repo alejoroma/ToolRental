@@ -36,11 +36,6 @@ public class Tool {
 	 * price of the item 
 	 */
 	private BigDecimal toolPrice;
-	
-	/**
-	 * price of the item 
-	 */
-	private Long toolStock;
 
 	public Long getIdTool() {
 		return idTool;
@@ -73,13 +68,4 @@ public class Tool {
 	public void setToolPrice(BigDecimal toolPrice) {
 		this.toolPrice = toolPrice;
 	}
-
-	public Long getToolStock() {
-		return toolStock;
-	}
-
-	public void setToolStock(Long toolStock) {
-		this.toolStock = toolStock;
-	}
 }
-

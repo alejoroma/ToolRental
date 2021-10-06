@@ -1,7 +1,5 @@
 package com.toolrental.toolRentalAPI.Controllers;
 
-import javax.persistence.Id;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

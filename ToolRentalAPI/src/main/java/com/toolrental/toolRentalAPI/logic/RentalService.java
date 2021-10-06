@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.toolrental.toolRentalAPI.DAO.RentalRepository;
 import com.toolrental.toolRentalAPI.models.Rental;
-import com.toolrental.toolRentalAPI.models.User;
 
 @Service
 public class RentalService  {
@@ -35,8 +34,9 @@ public class RentalService  {
 		return listToolRentedByUser;
 	}
 	
-	
 	public void delete (Rental rental) {
 		rentalRepository.delete(rental);
 	}
+	
+	
 }

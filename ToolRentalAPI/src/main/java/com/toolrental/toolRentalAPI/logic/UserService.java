@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.toolrental.toolRentalAPI.DAO.UserRepository;
-import com.toolrental.toolRentalAPI.models.Tool;
 import com.toolrental.toolRentalAPI.models.User;
 
 @Service
