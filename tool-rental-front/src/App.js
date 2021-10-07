@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-export const ToolAvailable = ({ toolId, toolName }) => {
+export const ToolAvailable = ({ toolId, toolName, toolDescription }) => {
 
   const handleClick = async () =>{
     const requestOptions = {
@@ -20,8 +20,9 @@ export const ToolAvailable = ({ toolId, toolName }) => {
       <div className='row'>
         <div className='col-10'><h5>{toolName}</h5></div>
         <div className='col-1'>
-          <a className="btn btn-primary btn-sm" href="Jumbo action link" role="button" onClick={handleClick}>+</a></div>
-      </div>
+          <button className="btn btn-primary btn-sm"  onClick={handleClick} title="Tooltip on top">+</button></div>
+        </div>
+        <div className="row text-secondary"><p>{toolDescription}</p></div>
     </li>
   );
 }
@@ -46,7 +47,7 @@ export const SideBar = () => {
 
   //crea la lista de tools a nivel de List items html
   const toolsList = tools.map(tool =>
-    <ToolAvailable key={tool.idTool} toolId={tool.idTool} toolName={tool.toolName} />
+    <ToolAvailable key={tool.idTool} toolId={tool.idTool} toolName={tool.toolName} toolDescription={tool.toolDescription} />
   )
 
   //retorna el componente side bar
@@ -84,19 +85,30 @@ export const UserInfo = ({ userId, userName, urlImageUser }) => {
   );
 }
 
-export const RentedTool = ({ toolId, toolName, deliveryDate }) => {
+export const RentedTool = ({ idRental, toolName, toolDescription }) => {
+  const handleClick = async () =>{
+    const requestOptions = {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        idRental:idRental
+      })
+    };
+    await fetch('http://127.0.0.1:8080/rental', requestOptions);
+  }
+
   return (
     <div id='toolRented' className='row'>
-      <div className='col-2'>
-        <div className="border border-primary rounded">
-          <h3 className='text-center'>{toolName}</h3>
+      <div className='col-3'>
+        <div className="border border-secondary rounded">
+          <h4 className='text-center'>{toolName}</h4>
         </div>
       </div>
-      <div className='col-10'>
+      <div className='col-9'>
         <div className='row'>
-          <div className='col-10 text-secondary'><h5>delivery date: {deliveryDate}</h5></div>
+          <div className='col-10 text-secondary'><h5>{toolDescription}</h5><h6>Delivery date: 13 dias</h6></div>
           <div className='col-1'>
-            <a className="btn btn-primary btn-sm" href="Jumbo action link" role="button">return</a></div>
+            <a className="btn btn-primary btn-sm" href="Jumbo action link" role="button" onClick={handleClick}>return</a></div>
         </div>
       </div>
       <hr className="my-2" />
@@ -122,7 +134,7 @@ export const RentedTools = ({userId}) => {
 
   //crea la lista de tools a nivel de List items html
   const rentedToolsList = rentedTools.map(rental =>
-    <RentedTool key={rental.tool.idTool} toolId={rental.tool.idTool} toolName={rental.tool.toolName} deliveryDate='13 dias' />
+    <RentedTool key={rental.idRental} idRental={rental.idRental} toolName={rental.tool.toolName} toolDescription={rental.tool.toolDescription} />
   )
 
   return (

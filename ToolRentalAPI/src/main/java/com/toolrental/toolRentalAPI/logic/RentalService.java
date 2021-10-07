@@ -35,8 +35,6 @@ public class RentalService  {
 	}
 	
 	public void delete (Rental rental) {
-		rentalRepository.delete(rental);
+		rentalRepository.deleteById(rental.getIdRental());
 	}
-	
-	
 }

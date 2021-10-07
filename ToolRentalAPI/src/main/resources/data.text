@@ -1,0 +1,15 @@
+--insercion de herramientas
+insert into tools (id_tool, tool_name, tool_description, tool_price) values (1,'Serrucho','para madera',12);
+insert into tools (id_tool, tool_name, tool_description, tool_price) values (2,'Llave hexagonal','para tornillos',12);
+insert into tools (id_tool, tool_name, tool_description, tool_price) values (3,'Hidro lavadora','para el mugre',12);
+insert into tools (id_tool, tool_name, tool_description, tool_price) values (4,'Segeta','para metal',12);
+insert into tools (id_tool, tool_name, tool_description, tool_price) values (5,'Taladro','para concreto',12);
+insert into tools (id_tool, tool_name, tool_description, tool_price) values (6,'Cuchillo','para cortar',12);
+insert into tools (id_tool, tool_name, tool_description, tool_price) values (7,'Llave inglesa','1/10',12);
+insert into tools (id_tool, tool_name, tool_description, tool_price) values (8,'Llave inglesa','1/12',12);
+insert into tools (id_tool, tool_name, tool_description, tool_price) values (9,'Llave inglesa','1/15',12);
+insert into tools (id_tool, tool_name, tool_description, tool_price) values (10,'Llave inglesa','1/4',12);
+insert into tools (id_tool, tool_name, tool_description, tool_price) values (11,'Llave inglesa','1/3',12);
+insert into tools (id_tool, tool_name, tool_description, tool_price) values (12,'Llave inglesa','1/2',12);
+--insercion de usuarios
+insert into users (id_user, user_name, password) values (1,'Alejandro Rodriguez','password');

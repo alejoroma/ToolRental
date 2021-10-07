@@ -18,7 +18,7 @@ public class Rental {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "sequence_rentals")
-	private Long idUser;
+	private Long idRental;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
 	private User user;
@@ -40,5 +40,13 @@ public class Rental {
 
 	public void setTool(Tool tool) {
 		this.tool = tool;
+	}
+
+	public Long getIdRental() {
+		return idRental;
+	}
+
+	public void setIdRental(Long idRental) {
+		this.idRental = idRental;
 	}	
 }
